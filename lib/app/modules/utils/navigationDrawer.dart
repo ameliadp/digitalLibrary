@@ -1,0 +1,162 @@
+import 'package:digitallibrary/app/modules/home/views/home_view.dart';
+import 'package:digitallibrary/app/modules/library/views/library_view.dart';
+import 'package:digitallibrary/app/modules/login/views/login_view.dart';
+import 'package:digitallibrary/app/modules/myList/views/my_list_view.dart';
+import 'package:digitallibrary/app/modules/profile/views/profile_view.dart';
+import 'package:digitallibrary/app/modules/utils/color.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:nb_utils/nb_utils.dart';
+
+class NavigationDrawerWidget extends StatefulWidget {
+  const NavigationDrawerWidget({Key? key}) : super(key: key);
+
+  @override
+  State<NavigationDrawerWidget> createState() => _NavigationDrawerWidgetState();
+}
+
+class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
+  final RxBool isHovered = false.obs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Material(
+        color: colorPrimary,
+        child: ListView(
+          children: <Widget>[
+            buildMenuItem(
+              text: '',
+              image: 'assets/images/garis.png',
+              onClicked: () {
+                Get.back();
+              },
+            ),
+            48.height,
+            buildMenuItem(
+              text: 'Home',
+              image: 'assets/images/home.png',
+              onClicked: () => selectedItem(context, 0),
+            ),
+            buildMenuItem(
+              text: 'Library',
+              image: 'assets/images/library.png',
+              onClicked: () => selectedItem(context, 1),
+            ),
+            buildMenuItem(
+              text: 'My List',
+              image: 'assets/images/list.png',
+              onClicked: () => selectedItem(context, 2),
+            ),
+            buildMenuItem(
+              text: 'Profile',
+              image: 'assets/images/profile.png',
+              onClicked: () => selectedItem(context, 3),
+            ),
+            360.height,
+            buildMenuItem(
+              text: 'Logout',
+              image: 'assets/images/logout.png',
+              onClicked: () => selectedItem(context, 6),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildMenuItem({
+    required String text,
+    required String image,
+    VoidCallback? onClicked,
+  }) {
+    final color = colorwhite;
+    final hoverColor = Colors.white;
+
+    return InkWell(
+      onTap: onClicked,
+      onHover: (hovering) => isHovered.value = hovering,
+      child: Container(
+        color: isHovered.value ? hoverColor : Colors.transparent,
+        child: ListTile(
+          leading: Image.asset(
+            image,
+            fit: BoxFit.contain,
+            width: 28.0,
+          ),
+          title: Text(
+            text,
+            style: GoogleFonts.quicksand(color: color, fontSize: 18.0),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+void selectedItem(BuildContext context, int Index) {
+  Get.back();
+
+  switch (Index) {
+    case 0:
+      Get.to(() => HomeView());
+      break;
+    case 1:
+      Get.to(() => LibraryView());
+      break;
+    case 2:
+      Get.to(() => MyListView());
+      break;
+    case 3:
+      Get.to(() => ProfileView());
+      break;
+    case 4:
+      Get.to(() => LoginView());
+      break;
+    // case 5:
+    //   Get.to(() => LoginView());
+    //   break;
+    case 6:
+      logout(context);
+      break;
+  }
+}
+
+void logout(BuildContext context) {
+  Get.defaultDialog(
+    contentPadding: const EdgeInsets.all(16.0),
+    title: 'Logout',
+    titleStyle:
+        GoogleFonts.quicksand(color: colorFourd, fontWeight: FontWeight.w400),
+    middleText: 'Are you sure, you want to logout?',
+    middleTextStyle: GoogleFonts.quicksand(
+      color: colorFourd,
+      fontSize: 17.0,
+    ),
+    actions: [
+      Align(
+        alignment: Alignment.bottomRight,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: colorPrimary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 4.0,
+                vertical: 2.0,
+              ),
+              fixedSize: const Size(80, 2)),
+          onPressed: () {
+            Get.back();
+          },
+          child: Text(
+            'Yes',
+            style: GoogleFonts.quicksand(color: colorwhite, fontSize: 14.0),
+          ),
+        ),
+      ),
+    ],
+  );
+}
