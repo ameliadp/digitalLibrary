@@ -15,25 +15,43 @@ class TopBookView extends GetView<TopBookController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 35.0,
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: colorPrimary,
-              size: 20.0,
+          backgroundColor: colorwhite,
+          toolbarHeight: 50.0,
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              'Top Books',
+              style: GoogleFonts.quicksand(
+                  color: colorPrimary,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.w700),
             ),
           ),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 12.0, bottom: 8.0),
+            child: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: colorPrimary,
+                size: 20.0,
+              ),
+            ),
+          ),
+          elevation: 3,
+          shadowColor: colorgrey,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 10.0,
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  bottom: 10.0,
+                  top: 20.0,
                 ),
                 child: SizedBox(
                   height: 35.0,

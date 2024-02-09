@@ -27,27 +27,36 @@ class HomeView extends GetView<HomeController> {
               child: NavigationDrawerWidget())),
       appBar: AppBar(
         backgroundColor: colorwhite,
-        toolbarHeight: 45.0,
-        title: Text(
-          'Home',
-          style: GoogleFonts.quicksand(
-              color: colorFourd, fontSize: 25.0, fontWeight: FontWeight.w700),
-        ),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: const Icon(
-                Icons.menu_rounded,
+        toolbarHeight: 50.0,
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Text(
+            'Home',
+            style: GoogleFonts.quicksand(
                 color: colorPrimary,
-                size: 30.0,
-              ),
-            );
-          },
+                fontSize: 25.0,
+                fontWeight: FontWeight.w700),
+          ),
         ),
-        elevation: 4,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
+          child: Builder(
+            builder: (context) {
+              return IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const Icon(
+                  Icons.menu_rounded,
+                  color: colorPrimary,
+                  size: 30.0,
+                ),
+              );
+            },
+          ),
+        ),
+        elevation: 3,
+        shadowColor: colorgrey,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -55,7 +64,8 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Container(
                   alignment: Alignment.topRight,
                   child: Text(
@@ -74,7 +84,7 @@ class HomeView extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Top Book'.toUpperCase(),
+                      'Top Books'.toUpperCase(),
                       style: GoogleFonts.quicksand(
                         color: colorFourd,
                         fontSize: 20.0,
@@ -173,7 +183,7 @@ class HomeView extends GetView<HomeController> {
                 child: Container(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Most Popular'.toUpperCase(),
+                    'Other Books'.toUpperCase(),
                     style: GoogleFonts.quicksand(
                         color: colorFourd,
                         fontSize: 20.0,
