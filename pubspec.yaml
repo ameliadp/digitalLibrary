@@ -17,8 +17,25 @@ dependencies:
   flutter_rating_bar: 4.0.1
   google_fonts: 6.1.0
   animated_splash_screen: 1.3.0
+  flutter_launcher_icons: 0.13.1
   flutter: 
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logoHZ.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/logoHZ.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/logoHZ.png"
+    icon_size: 48
+  remove_alpha_ios: true
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

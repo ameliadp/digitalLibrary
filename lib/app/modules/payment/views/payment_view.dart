@@ -99,7 +99,7 @@ class PaymentView extends GetView<PaymentController> {
                     Get.back();
                   },
                   child: Text(
-                    'Selesai',
+                    'Done',
                     style:
                         GoogleFonts.mulish(color: colorwhite, fontSize: 18.0),
                   ),
